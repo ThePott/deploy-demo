@@ -28,6 +28,7 @@ jobs:
 
   setup-docker-container:
     runs-on: self-hosted
+    needs: warmup
     steps:
       - name: git clone
         uses: actions/checkout@v5
@@ -39,6 +40,11 @@ jobs:
 
       - name: build docker image
         run: docker build --tag deploy-demo:latest --platform linux/amd64 .
+
+      - name: stop and remove existing container
+        run: |
+          docker stop ${{env.DOCKER_CONTAINER_NAME}} || true
+          docker rm ${{env.DOCKER_CONTAINER_NAME}} || true
 
       - name: create container by run
         run: docker run --publish 5173:80 --name ${{env.DOCKER_CONTAINER_NAME}} deploy-demo:latest
