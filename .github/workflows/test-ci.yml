@@ -1,0 +1,13 @@
+name: Build On EC2
+
+on:
+    push:
+        branches:
+            - main
+
+jobs:
+  MY-CI-CD-JOBS
+    runs-on: self-host
+    steps:
+      - name: test if it works
+        run: echo "yaho it works"
