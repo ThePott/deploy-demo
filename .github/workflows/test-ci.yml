@@ -9,7 +9,7 @@ on:
             - main
 
 jobs:
-  MY-CI-CD-JOBS:
+  warmup:
     runs-on: self-hosted
     steps:
       - name: test if it works
@@ -22,3 +22,24 @@ jobs:
 
       - name: print env var
         run: echo ${{env.DOCKER_CONTAINER_NAME}}
+
+      - name: print names of running containsers
+        run: docker ps --format "{{.Names}}"
+
+  setup-docker-container:
+    runs-on: self-hosted
+    steps:
+      - name: git clone
+        uses: actions/checkout@v5
+
+      - name: npm install then build
+        run: |
+          npm install
+          npm build
+
+      - name: build docker image
+        run: build --tag deploy-demo:latest --platform linux/amd64 .
+
+      - name: create container by run
+        run: docker run --publish 5173:80 --name ${{env.DOCKER_CONTAINER_NAME}} deploy-demo:latest
+
