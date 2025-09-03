@@ -1,5 +1,8 @@
 name: Build On EC2
 
+env:
+  DOCKER_CONTAINER_NAME: laughing_kare
+
 on:
     push:
         branches:
@@ -11,3 +14,11 @@ jobs:
     steps:
       - name: test if it works
         run: echo "yaho it works"
+
+      - name: print runner info
+        run: |
+          pwd |
+          echo $USER 
+
+      - name: print env var
+        run: echo ${{env.DOCKER_CONTAINER_NAME}}
