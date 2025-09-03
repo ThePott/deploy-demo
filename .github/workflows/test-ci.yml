@@ -7,7 +7,7 @@ on:
 
 jobs:
   MY-CI-CD-JOBS
-    runs-on: self-host
+    runs-on: self-hosted
     steps:
       - name: test if it works
         run: echo "yaho it works"
