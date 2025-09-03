@@ -6,7 +6,7 @@ on:
             - main
 
 jobs:
-  MY-CI-CD-JOBS
+  MY-CI-CD-JOBS:
     runs-on: self-hosted
     steps:
       - name: test if it works
