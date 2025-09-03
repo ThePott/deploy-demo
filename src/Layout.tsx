@@ -6,7 +6,7 @@ const Layout = () => {
   return (
     <div>
       <div className="flex gap-3">
-        <div>CI/CI 구성함</div>
+        <div>CI/CD 구성함</div>
         <RoundedBox onClick={() => navigate("/shop")}>Shop</RoundedBox>
         <RoundedBox onClick={() => navigate("/profile")}>Profile</RoundedBox>
       </div>
