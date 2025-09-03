@@ -47,5 +47,5 @@ jobs:
           docker rm ${{env.DOCKER_CONTAINER_NAME}} || true
 
       - name: create container by run
-        run: docker run --publish 5173:80 --name ${{env.DOCKER_CONTAINER_NAME}} deploy-demo:latest
+        run: docker run --detach --publish 5173:80 --name ${{env.DOCKER_CONTAINER_NAME}} deploy-demo:latest
 
